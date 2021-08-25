@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Address Management</title>
+    <style>
+        *{ box-sizing: border-box; }
+        html, body{ margin: 0; 
+        padding: 0; 
+        }
+        .container{
+            margin: 100px 300px;
+
+        }
+        .form-group{
+            margin: 10px; 
+            padding-left: 10px;
+        }
+        .signupsec{
+            margin-left: 50px;
+            border: 3px solid rgb(8, 8, 15); 
+            background:rgb(122, 122, 122);
+            padding-left: 100px;
+        }
+       
+        button{
+            width: 200px;
+            padding: 15px;
+            margin-left: 250px;
+            background: rgb(92, 92, 92);
+            color: white;
+            border: solid 1px white;
+            border-radius: 50px;
+        }
+        
+        table tr td{
+            border: solid 1px rgb(112, 110, 110);
+            padding: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="signupsec">
+        <h2>SIGNUP FORM</h2>
+        <form role="form" onsubmit="signUp(event);">
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="textinput">Line 1</label>
+                <div class="col-sm-10">
+                  <input type="text" id="al1" placeholder="Address Line 1" class="form-control" required>
+                </div>
+              </div>
+    
+              <!-- Text input-->
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="textinput">Line 2</label>
+                <div class="col-sm-10">
+                  <input type="text" id="al2" placeholder="Address Line 2" class="form-control" required>
+                </div>
+              </div>
+    
+              <!-- Text input-->
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="textinput">City</label>
+                <div class="col-sm-10">
+                  <input type="text" id="city" placeholder="City" class="form-control" required> 
+                </div>
+              </div>
+    
+              <!-- Text input-->
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="textinput">State</label>
+                <div class="col-sm-4">
+                  <input type="text" id="state" placeholder="State" class="form-control" required>
+                </div>
+    
+                <label class="col-sm-2 control-label" for="textinput">Postcode</label>
+                <div class="col-sm-4">
+                  <input type="text" id="pc" placeholder="Post Code" class="form-control" required>
+                </div>
+              </div>
+    
+    
+    
+              <!-- Text input-->
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="textinput">Country</label>
+                <div class="col-sm-10">
+                  <input type="text" id="country" placeholder="Country" class="form-control" required>
+                </div>
+              </div>
+    
+            <div class="form-group">
+                <button type="submit">Sign Up</button>
+            </div>
+        </form>
+        </div>
+        <h2>Address</h2>
+        <div id="output">    
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        const signUp = e => {
+            let formData = { 
+                al1: document.getElementById('al1').value,
+                al2: document.getElementById('al2').value,
+                city: document.getElementById('city').value,
+                pc: document.getElementById('pc').value,
+                country: document.getElementById('country').value
+            }
+            
+             localStorage.setItem('formData', JSON.stringify(formData));
+              dispData();
+            e.preventDefault();
+        }
+        function dispData(){
+            //console.log(JSON.parse(localStorage.getItem('formData')));
+            let{al1,al2,city,pc}=JSON.parse(localStorage.getItem('formData'));
+            var output=document.getElementById("output");
+                    output.innerHTML += `
+                            <table style="background: gray">
+                                <tbody>
+                                <tr>
+                                <td>al1</td>
+                                <td>${al1}</td>
+                                </tr>
+                                <tr>
+                                <td>al2</td>
+                                <td>${al2}</td>
+                                </tr>
+                                <tr>
+                                <td>city</td>
+                                <td>${city}</td>
+                                </tr>
+                                <tr>
+                                <td>pc</td>
+                                <td>${pc}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                    `;
+                    }
+       
+    </script>
+</body>
+</html>
